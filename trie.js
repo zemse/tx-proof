@@ -1,28 +1,16 @@
-const Trie = require('merkle-patricia-tree')
+const Trie = require('merkle-patricia-tree');
+const { Proof } = require('eth-object');
+const { promisfy } = require('promisfy');
 
 trie = new Trie();
 
-const triePut = (rlcIndex, rlcTx) => new Promise(function(resolve, reject) {
-  trie.put('test', '0x1234', resolve);
-});
-
-const trieGet = rlcIndex => new Promise(function(resolve, reject) {
-  trie.get(rlcIndex, (err, value) => {
-    resolve(value);
-  });
-});
-
-const trieFindPath = rlcIndex => new Promise(function(resolve, reject) {
-  trie.findPath(rlcIndex, (err, value) => {
-    resolve(value);
-  });
-});
-
 (async() => {
-  await triePut(Buffer.from('ababab', 'hex'), Buffer.from('ababab', 'hex'), { keyEncoding: 'binary', valueEncoding: 'binary' });
-  // await triePut('0x01', '0x5678');
-  // await triePut('0x02', '0x9ABC');
 
-  const trieNode = await trieGet(Buffer.from('ababab', 'hex'));
-  console.log(trieNode);
+  await Promise.all([].map(entry => {
+    return promisfy(trie.put, trie)(entry[0], entry[1]);
+  }));
+
+  const res = await promisfy(trie.findPath, trie)(Buffer.from('a3', 'hex'));
+
+  console.log(Proof.fromStack(res[2]));
 })();

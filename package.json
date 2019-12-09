@@ -12,6 +12,7 @@
     "eth-object": "^1.0.3",
     "eth-proof": "^2.1.4",
     "eth-util-lite": "^1.0.1",
-    "isomorphic-rpc": "^1.1.1"
+    "isomorphic-rpc": "^1.1.1",
+    "promisfy": "^1.2.0"
   }
 }
