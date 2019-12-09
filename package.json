@@ -1,0 +1,17 @@
+{
+  "name": "tx-proof",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eth-object": "^1.0.3",
+    "eth-proof": "^2.1.4",
+    "eth-util-lite": "^1.0.1",
+    "isomorphic-rpc": "^1.1.1"
+  }
+}
